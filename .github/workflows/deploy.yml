@@ -50,4 +50,5 @@ jobs:
             --stack-name japan-tech-careers-api \
             --capabilities CAPABILITY_IAM \
             --resolve-s3 \
+            --resolve-image-repos \
             --region ${{ secrets.AWS_REGION }}
