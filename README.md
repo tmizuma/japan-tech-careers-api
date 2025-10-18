@@ -157,13 +157,7 @@ git push origin main
 
 デプロイ後、以下のエンドポイントが利用可能:
 
-- `GET /` - ヘルスチェック (`{"message":"hello"}`)
-
-## 次のステップ
-
-plan.md を参照して、以下の機能を実装:
-
-1. `POST /blog/generate` - ブログ生成 (Bedrock)
-2. `POST /blog/translate` - 翻訳 (Bedrock)
-3. `POST /blog/deploy` - GitHub Actions トリガー
-4. `POST /slack/notify` - Slack 通知
+```bash
+curl https://5lhcnptds4.execute-api.ap-northeast-1.amazonaws.com
+{"message":"hello"}
+```
