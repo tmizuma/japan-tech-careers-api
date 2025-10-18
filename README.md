@@ -131,8 +131,8 @@ aws iam attach-role-policy \
 
 リポジトリの Settings > Secrets and variables > Actions で以下を追加:
 
-- `AWS_ROLE_ARN`: `arn:aws:iam::YOUR_ACCOUNT_ID:role/GitHubActionsRole`
-- `AWS_REGION`: `us-east-1` (または任意のリージョン)
+- `AWS_ROLE_ARN`: `arn:aws:iam::904233098356:role/GitHubActionsRole`
+- `AWS_REGION`: `ap-northeast-1` (または任意のリージョン)
 
 ## デプロイ
 
