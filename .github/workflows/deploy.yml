@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '**.go'
+      - 'go.mod'
+      - 'go.sum'
+      - 'template.yaml'
+      - 'Dockerfile'
+      - '.github/workflows/deploy.yml'
 
 jobs:
   deploy:
@@ -23,13 +30,6 @@ jobs:
 
       - name: Setup SAM
         uses: aws-actions/setup-sam@v2
-
-      - name: Debug GitHub Context
-        run: |
-          echo "Repository: ${{ github.repository }}"
-          echo "Ref: ${{ github.ref }}"
-          echo "SHA: ${{ github.sha }}"
-          echo "Actor: ${{ github.actor }}"
 
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
