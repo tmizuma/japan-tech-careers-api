@@ -21,16 +21,16 @@ Resources:
           API_ENDPOINT: https://api.example.com
           API_TIMEOUT: 30
       Events:
-        ApiEvent:
-          Type: HttpApi
-          Properties:
-            Path: /{proxy+}
-            Method: ANY
         RootEvent:
           Type: HttpApi
           Properties:
             Path: /
-            Method: GET
+            Method: ANY
+        ProxyEvent:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
     Metadata:
       Dockerfile: Dockerfile
       DockerContext: .

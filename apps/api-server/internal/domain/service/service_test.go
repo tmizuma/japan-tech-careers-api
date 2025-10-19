@@ -19,7 +19,7 @@ func TestServiceImpl_FetchJobs(t *testing.T) {
 		checkJobsNil  bool
 	}{
 		{
-			name: "正常系: 複数のJobが返される",
+			name: "Success: Multiple jobs are returned",
 			mockSetup: func(m *mock_httpclient.MockHttpClient) {
 				m.EXPECT().GetJobs(gomock.Any()).Return([]model.Job{
 					{
@@ -58,7 +58,7 @@ func TestServiceImpl_FetchJobs(t *testing.T) {
 			checkJobsNil:  false,
 		},
 		{
-			name: "正常系: 空のJobリストが返される",
+			name: "Success: Empty job list is returned",
 			mockSetup: func(m *mock_httpclient.MockHttpClient) {
 				m.EXPECT().GetJobs(gomock.Any()).Return([]model.Job{}, nil)
 			},
@@ -67,7 +67,7 @@ func TestServiceImpl_FetchJobs(t *testing.T) {
 			checkJobsNil:  false,
 		},
 		{
-			name: "異常系: HttpClientからエラーが返される",
+			name: "Error: HttpClient returns error",
 			mockSetup: func(m *mock_httpclient.MockHttpClient) {
 				m.EXPECT().GetJobs(gomock.Any()).Return(nil, errors.New("failed to fetch jobs from external API"))
 			},
@@ -76,7 +76,7 @@ func TestServiceImpl_FetchJobs(t *testing.T) {
 			checkJobsNil:  true,
 		},
 		{
-			name: "異常系: ネットワークエラー",
+			name: "Error: Network error",
 			mockSetup: func(m *mock_httpclient.MockHttpClient) {
 				m.EXPECT().GetJobs(gomock.Any()).Return(nil, errors.New("network timeout"))
 			},
@@ -85,7 +85,7 @@ func TestServiceImpl_FetchJobs(t *testing.T) {
 			checkJobsNil:  true,
 		},
 		{
-			name: "正常系: 1件のJobが返される",
+			name: "Success: Single job is returned",
 			mockSetup: func(m *mock_httpclient.MockHttpClient) {
 				m.EXPECT().GetJobs(gomock.Any()).Return([]model.Job{
 					{

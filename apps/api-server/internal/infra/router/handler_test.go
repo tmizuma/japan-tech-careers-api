@@ -21,7 +21,7 @@ func TestRouter_HandleRoot(t *testing.T) {
 		expectedContentType string
 	}{
 		{
-			name:                "正常系: ルートエンドポイントが正しく応答",
+			name:                "Success: Root endpoint responds correctly",
 			expectedStatusCode:  http.StatusOK,
 			expectedMessage:     "Japan Tech Careers API is running",
 			expectedStatus:      "healthy",
@@ -82,7 +82,7 @@ func TestRouter_HandleGetJobs(t *testing.T) {
 		isErrorResponse       bool
 	}{
 		{
-			name: "正常系: 複数のJobが返される",
+			name: "Success: Multiple jobs are returned",
 			mockSetup: func(m *mock_controller.MockController) {
 				m.EXPECT().GetJobs(gomock.Any()).Return([]model.Job{
 					{
@@ -107,7 +107,7 @@ func TestRouter_HandleGetJobs(t *testing.T) {
 			isErrorResponse:    false,
 		},
 		{
-			name: "正常系: 空のJobリストが返される",
+			name: "Success: Empty job list is returned",
 			mockSetup: func(m *mock_controller.MockController) {
 				m.EXPECT().GetJobs(gomock.Any()).Return([]model.Job{}, nil)
 			},
@@ -116,7 +116,7 @@ func TestRouter_HandleGetJobs(t *testing.T) {
 			isErrorResponse:    false,
 		},
 		{
-			name: "異常系: Controllerからエラーが返される",
+			name: "Error: Controller returns error",
 			mockSetup: func(m *mock_controller.MockController) {
 				m.EXPECT().GetJobs(gomock.Any()).Return(nil, errors.New("database connection failed"))
 			},
@@ -125,7 +125,7 @@ func TestRouter_HandleGetJobs(t *testing.T) {
 			isErrorResponse:    true,
 		},
 		{
-			name: "正常系: 1件のJobが返される",
+			name: "Success: Single job is returned",
 			mockSetup: func(m *mock_controller.MockController) {
 				m.EXPECT().GetJobs(gomock.Any()).Return([]model.Job{
 					{
@@ -143,7 +143,7 @@ func TestRouter_HandleGetJobs(t *testing.T) {
 			isErrorResponse:       false,
 		},
 		{
-			name: "異常系: サービスタイムアウトエラー",
+			name: "Error: Service timeout error",
 			mockSetup: func(m *mock_controller.MockController) {
 				m.EXPECT().GetJobs(gomock.Any()).Return(nil, errors.New("request timeout"))
 			},

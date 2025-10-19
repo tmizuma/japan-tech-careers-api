@@ -19,7 +19,7 @@ func TestControllerImpl_GetJobs(t *testing.T) {
 		checkJobsNil  bool
 	}{
 		{
-			name: "正常系: 複数のJobが返される",
+			name: "Success: Multiple jobs are returned",
 			mockSetup: func(m *mock_service.MockService) {
 				m.EXPECT().FetchJobs(gomock.Any()).Return([]model.Job{
 					{
@@ -58,7 +58,7 @@ func TestControllerImpl_GetJobs(t *testing.T) {
 			checkJobsNil:  false,
 		},
 		{
-			name: "正常系: 空のJobリストが返される",
+			name: "Success: Empty job list is returned",
 			mockSetup: func(m *mock_service.MockService) {
 				m.EXPECT().FetchJobs(gomock.Any()).Return([]model.Job{}, nil)
 			},
@@ -67,7 +67,7 @@ func TestControllerImpl_GetJobs(t *testing.T) {
 			checkJobsNil:  false,
 		},
 		{
-			name: "異常系: Serviceからエラーが返される",
+			name: "Error: Service returns error",
 			mockSetup: func(m *mock_service.MockService) {
 				m.EXPECT().FetchJobs(gomock.Any()).Return(nil, errors.New("service error occurred"))
 			},
@@ -76,7 +76,7 @@ func TestControllerImpl_GetJobs(t *testing.T) {
 			checkJobsNil:  true,
 		},
 		{
-			name: "正常系: 1件のJobが返される",
+			name: "Success: Single job is returned",
 			mockSetup: func(m *mock_service.MockService) {
 				m.EXPECT().FetchJobs(gomock.Any()).Return([]model.Job{
 					{
@@ -101,7 +101,7 @@ func TestControllerImpl_GetJobs(t *testing.T) {
 			checkJobsNil:  false,
 		},
 		{
-			name: "異常系: データベース接続エラー",
+			name: "Error: Database connection error",
 			mockSetup: func(m *mock_service.MockService) {
 				m.EXPECT().FetchJobs(gomock.Any()).Return(nil, errors.New("database connection failed"))
 			},
@@ -110,7 +110,7 @@ func TestControllerImpl_GetJobs(t *testing.T) {
 			checkJobsNil:  true,
 		},
 		{
-			name: "正常系: 大量のJobが返される",
+			name: "Success: Large number of jobs are returned",
 			mockSetup: func(m *mock_service.MockService) {
 				manyJobs := make([]model.Job, 100)
 				for i := 0; i < 100; i++ {

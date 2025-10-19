@@ -12,7 +12,7 @@ func TestNewConfig(t *testing.T) {
 		expected Config
 	}{
 		{
-			name: "環境変数が全て設定されている場合",
+			name: "All environment variables are set",
 			envVars: map[string]string{
 				"ENVIRONMENT":  "production",
 				"LOG_LEVEL":    "debug",
@@ -27,7 +27,7 @@ func TestNewConfig(t *testing.T) {
 			},
 		},
 		{
-			name:    "環境変数が未設定でデフォルト値が使用される場合",
+			name:    "Environment variables not set and default values are used",
 			envVars: map[string]string{},
 			expected: Config{
 				Environment: "local",
@@ -37,7 +37,7 @@ func TestNewConfig(t *testing.T) {
 			},
 		},
 		{
-			name: "一部の環境変数のみ設定されている場合",
+			name: "Only some environment variables are set",
 			envVars: map[string]string{
 				"ENVIRONMENT": "staging",
 				"API_TIMEOUT": "45",
@@ -50,7 +50,7 @@ func TestNewConfig(t *testing.T) {
 			},
 		},
 		{
-			name: "無効なタイムアウト値でデフォルト値が使用される場合",
+			name: "Invalid timeout value and default value is used",
 			envVars: map[string]string{
 				"API_TIMEOUT": "invalid",
 			},
@@ -62,7 +62,7 @@ func TestNewConfig(t *testing.T) {
 			},
 		},
 		{
-			name: "dev環境の設定",
+			name: "Development environment configuration",
 			envVars: map[string]string{
 				"ENVIRONMENT":  "dev",
 				"LOG_LEVEL":    "debug",
