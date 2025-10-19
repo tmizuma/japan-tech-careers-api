@@ -5,18 +5,18 @@ on:
     branches:
       - main
     paths:
-      - '**.go'
-      - 'go.mod'
-      - 'go.sum'
-      - 'template.yaml'
-      - 'Dockerfile'
-      - '.github/workflows/deploy.yml'
+      - "**.go"
+      - "go.mod"
+      - "go.sum"
+      - "template.yaml"
+      - "Dockerfile"
+      - ".github/workflows/deploy.yml"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write  # OIDC認証用
+      id-token: write # OIDC認証用
       contents: read
 
     steps:
@@ -26,7 +26,16 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.25'
+          go-version: "1.25"
+
+      - name: Download dependencies
+        run: go mod download
+
+      - name: Generate mocks
+        run: cd apps/api-server && go generate ./...
+
+      - name: Run unit tests
+        run: cd apps/api-server && go test ./... -v
 
       - name: Setup SAM
         uses: aws-actions/setup-sam@v2

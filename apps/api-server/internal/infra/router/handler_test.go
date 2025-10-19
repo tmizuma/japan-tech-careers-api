@@ -7,24 +7,24 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
-	mock_controller "github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/infra/controller/mock"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
+	mock_controller "github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/infra/controller/mock"
 	"go.uber.org/mock/gomock"
 )
 
 func TestRouter_HandleRoot(t *testing.T) {
 	tests := []struct {
-		name               string
-		expectedStatusCode int
-		expectedMessage    string
-		expectedStatus     string
+		name                string
+		expectedStatusCode  int
+		expectedMessage     string
+		expectedStatus      string
 		expectedContentType string
 	}{
 		{
-			name:               "正常系: ルートエンドポイントが正しく応答",
-			expectedStatusCode: http.StatusOK,
-			expectedMessage:    "Japan Tech Careers API is running",
-			expectedStatus:     "healthy",
+			name:                "正常系: ルートエンドポイントが正しく応答",
+			expectedStatusCode:  http.StatusOK,
+			expectedMessage:     "Japan Tech Careers API is running",
+			expectedStatus:      "healthy",
 			expectedContentType: "application/json",
 		},
 	}
@@ -72,14 +72,14 @@ func TestRouter_HandleRoot(t *testing.T) {
 
 func TestRouter_HandleGetJobs(t *testing.T) {
 	tests := []struct {
-		name               string
-		mockSetup          func(*mock_controller.MockController)
-		expectedStatusCode int
-		expectedCount      int
-		expectedError      string
-		checkFirstJobTitle string
+		name                  string
+		mockSetup             func(*mock_controller.MockController)
+		expectedStatusCode    int
+		expectedCount         int
+		expectedError         string
+		checkFirstJobTitle    string
 		checkFirstJobLocation string
-		isErrorResponse    bool
+		isErrorResponse       bool
 	}{
 		{
 			name: "正常系: 複数のJobが返される",

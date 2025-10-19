@@ -92,8 +92,8 @@ func TestNewConfig(t *testing.T) {
 			cfg := NewConfig()
 
 			// Assert: 期待値と一致することを検証
-			if cfg != tt.expected {
-				t.Errorf("Config mismatch:\n  expected: %+v\n  got:      %+v", tt.expected, cfg)
+			if *cfg != tt.expected {
+				t.Errorf("Config mismatch:\n  expected: %+v\n  got:      %+v", tt.expected, *cfg)
 			}
 		})
 	}

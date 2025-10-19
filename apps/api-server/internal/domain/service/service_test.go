@@ -5,18 +5,18 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
-	mock_httpclient "github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/infra/httpclient/mock"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
+	mock_httpclient "github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/infra/httpclient/mock"
 	"go.uber.org/mock/gomock"
 )
 
 func TestServiceImpl_FetchJobs(t *testing.T) {
 	tests := []struct {
-		name             string
-		mockSetup        func(*mock_httpclient.MockHttpClient)
-		expectedJobs     []model.Job
-		expectedError    string
-		checkJobsNil     bool
+		name          string
+		mockSetup     func(*mock_httpclient.MockHttpClient)
+		expectedJobs  []model.Job
+		expectedError string
+		checkJobsNil  bool
 	}{
 		{
 			name: "正常系: 複数のJobが返される",

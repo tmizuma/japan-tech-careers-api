@@ -1,11 +1,11 @@
 package application
 
 import (
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/config"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/domain/service"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/infra/controller"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/infra/httpclient"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/infra/router"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/config"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/domain/service"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/infra/controller"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/infra/httpclient"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/infra/router"
 )
 
 // Application holds all dependencies

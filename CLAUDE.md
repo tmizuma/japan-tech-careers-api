@@ -1,7 +1,5 @@
 # Japan Tech Careers API - 開発コンテキスト
 
-このドキュメントは、別の Claude Code インスタンスに引き継ぐための開発コンテキストを記述します。
-
 ## プロジェクト概要
 
 Go + AWS Lambda + SAM を使用した API サーバーのプロジェクトです。Clean Architecture に基づいた設計で、interface による依存性注入と gomock を使った自動モック生成を採用しています。
@@ -195,13 +193,6 @@ jobs, err := controller.GetJobs(ctx)
 - Lambda 統合テスト（SAM local）
 - E2E テスト
 
-## トラブルシューティング
-
-### Go 1.25 のダウンロードエラー
-
-現在の環境では Go 1.25 がインストールされていない場合があります。
-`go mod tidy`をスキップするか、Go バージョンを変更してください。
-
 ### モックが見つからないエラー
 
 ```bash
@@ -212,17 +203,5 @@ make generate
 
 ## 参考ドキュメント
 
-- [TESTING.md](apps/api-server/TESTING.md) - テスト戦略と gomock の詳細
-- [README.md](README.md) - プロジェクト全体の説明
+- [README.md](README.md) - プロジェクト全体の説明、テスト戦略、gomock の詳細
 - [template.yaml](template.yaml) - SAM 設定
-
-## 連絡事項
-
-- **テスト実行**: まだ実行していないため、初回実行時にエラーが出る可能性があります
-- **モック生成**: `make generate`を実行してから`make test`を実行してください
-- **依存関係**: `go mod tidy`はスキップされているため、必要に応じて実行してください
-
----
-
-**最終更新**: 2025-10-19
-**実装者**: Claude Code

@@ -32,3 +32,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# golang
+vendor/
+bin/

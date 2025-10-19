@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/config"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/config"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
 )
 
 // HttpClient is an interface for external API calls

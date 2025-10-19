@@ -34,7 +34,6 @@ AWS Amplify (自動デプロイ)
 
 3. **Go REST API (AWS Lambda)**
 
-   - Amazon Bedrock でブログ生成・翻訳
    - GitHub API 経由で GitHub Actions をトリガー
    - Slack 通知
    - AWS SAM でデプロイ

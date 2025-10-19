@@ -5,9 +5,9 @@ package controller
 import (
 	"context"
 
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/domain/service"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/shared/logger"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/domain/service"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/shared/logger"
 )
 
 // Controller is the interface for handling business logic coordination

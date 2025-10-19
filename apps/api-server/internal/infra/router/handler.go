@@ -6,8 +6,8 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/infra/controller"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/shared/logger"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/infra/controller"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/shared/logger"
 )
 
 // Router wraps the chi router with dependencies

@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
-	mock_service "github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/domain/service/mock"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
+	mock_service "github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/domain/service/mock"
 	"go.uber.org/mock/gomock"
 )
 

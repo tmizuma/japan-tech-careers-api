@@ -7,9 +7,9 @@ import (
 
 	"github.com/aws/aws-lambda-go/lambda"
 	chiadapter "github.com/awslabs/aws-lambda-go-api-proxy/chi"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/config"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/application"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/shared/logger"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/config"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/application"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/shared/logger"
 )
 
 var chiLambda *chiadapter.ChiLambda
@@ -31,7 +31,7 @@ func init() {
 	logger.Info(ctx, "Application initialized successfully")
 
 	// Create Lambda adapter
-	chiLambda = chiadapter.New(app.Router)
+	chiLambda = chiadapter.New(app.Router.Mux)
 }
 
 func main() {

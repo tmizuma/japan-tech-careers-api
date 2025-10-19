@@ -5,9 +5,9 @@ package service
 import (
 	"context"
 
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/infra/httpclient"
-	"github.com/tamizuma/japan-tech-careers-api/apps/api-server/internal/shared/logger"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/domain/model"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/infra/httpclient"
+	"github.com/tmizuma/japan-tech-careers-api/apps/api-server/internal/shared/logger"
 )
 
 // Service is the interface for business logic
