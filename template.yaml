@@ -22,12 +22,12 @@ Resources:
           API_TIMEOUT: 30
       Events:
         RootEvent:
-          Type: HttpApi
+          Type: Api
           Properties:
             Path: /
             Method: ANY
         ProxyEvent:
-          Type: HttpApi
+          Type: Api
           Properties:
             Path: /{proxy+}
             Method: ANY
@@ -39,4 +39,4 @@ Resources:
 Outputs:
   ApiUrl:
     Description: "API Gateway endpoint URL"
-    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
