@@ -6,9 +6,61 @@ Go + AWS Lambda + SAM を使用したブログ自動化システムのバック�
 
 - **言語**: Go 1.25
 - **フレームワーク**: chi (ルーター)
+- **Logger**: zap (構造化ログ)
 - **デプロイ**: AWS SAM
 - **実行環境**: AWS Lambda (コンテナイメージ)
 - **CI/CD**: GitHub Actions (OIDC 認証)
+
+## プロジェクト構造
+
+```
+apps/api-server/
+├── cmd/
+│   └── main.go              # エントリーポイント (Lambda/ローカル対応)
+├── config/
+│   └── config.go            # 環境変数ベースの設定管理
+└── internal/
+    ├── application/
+    │   └── di.go            # 依存性注入
+    ├── domain/
+    │   ├── model/           # ドメインモデル
+    │   │   └── job.go
+    │   └── service/         # ビジネスロジック
+    │       └── service.go
+    ├── infra/
+    │   ├── httpclient/      # 外部APIクライアント
+    │   │   └── client.go
+    │   └── router/          # ルーティング
+    │       └── handler.go
+    └── shared/
+        └── logger/          # zapベースのロガー
+            └── logger.go
+```
+
+## アーキテクチャ
+
+### 依存関係フロー
+
+```
+main.go
+  ↓
+config.NewConfig() (環境変数読み込み)
+  ↓
+application.New(config)
+  ↓
+  ├── httpclient.New(config)
+  ├── service.NewServiceImpl(httpClient)
+  └── router.NewRouter(service)
+```
+
+### レイヤー構成
+
+- **Config 層**: 環境変数の管理、デフォルト値の提供
+- **Logger 層**: zap を使用した構造化ログ、trace_id 対応
+- **HttpClient 層**: 外部 API 呼び出しの抽象化
+- **Service 層**: ビジネスロジックの実装
+- **Router/Handler 層**: HTTP リクエストの処理
+- **DI 層**: 依存性注入による疎結合化
 
 ## ローカル開発
 
@@ -25,11 +77,15 @@ Go + AWS Lambda + SAM を使用したブログ自動化システムのバック�
 go mod download
 
 # ローカル起動
-go run main.go
+go run apps/api-server/cmd/main.go
 
-# テスト
+# ヘルスチェック
 curl http://localhost:8080/
-# {"message":"hello"}
+# {"message":"Japan Tech Careers API is running","status":"healthy"}
+
+# Job一覧取得
+curl http://localhost:8080/jobs
+# {"count":2,"jobs":[...]}
 ```
 
 ### SAM でローカルテスト
@@ -157,7 +213,33 @@ git push origin main
 
 デプロイ後、以下のエンドポイントが利用可能:
 
+### `GET /`
+
+ヘルスチェックエンドポイント
+
 ```bash
-curl https://5lhcnptds4.execute-api.ap-northeast-1.amazonaws.com
-{"message":"hello"}
+curl https://5lhcnptds4.execute-api.ap-northeast-1.amazonaws.com/
+# {"message":"Japan Tech Careers API is running","status":"healthy"}
+```
+
+### `GET /jobs`
+
+Job 一覧を取得（現在はダミーデータを返却）
+
+curl https://5lhcnptds4.execute-api.ap-northeast-1.amazonaws.com/jobs
+
+# {"count":2,"jobs":[{"id":"1","title":"Senior Go Developer","company":"Tech Company A","location":"Tokyo, Japan","description":"Looking for an experienced Go developer"},...]}
+
+```
+
+## 環境変数
+
+Lambda関数で使用される環境変数は `template.yaml` で定義されています:
+
+- `ENVIRONMENT`: 実行環境 (dev, prod, local)
+- `LOG_LEVEL`: ログレベル (info, debug, error)
+- `API_ENDPOINT`: 外部APIのエンドポイント
+- `API_TIMEOUT`: HTTPタイムアウト(秒)
+
+ローカル開発時は、これらの環境変数が未設定の場合、デフォルト値が使用されます。
 ```
