@@ -31,9 +31,6 @@ jobs:
       - name: Download dependencies
         run: go mod download
 
-      - name: Generate mocks
-        run: cd apps/api-server && go generate ./...
-
       - name: Run unit tests
         run: cd apps/api-server && go test ./... -v
 
